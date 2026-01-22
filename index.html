@@ -3,218 +3,62 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Tacos de l'École - Commande en ligne</title>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;700&display=swap" rel="stylesheet">
+    <title>STAND TACOS DE L'ÉCOLE</title>
     <style>
-        :root {
-            --primary: #ffcc00;
-            --secondary: #25D366;
-            --dark: #121212;
-            --card-bg: #1e1e1e;
-        }
-
-        body {
-            font-family: 'Poppins', sans-serif;
-            background-color: var(--dark);
-            color: white;
-            margin: 0;
-            padding: 0;
-        }
-
-        header {
-            background: var(--primary);
-            color: black;
-            padding: 20px;
-            text-align: center;
-            font-size: 22px;
-            font-weight: bold;
-            box-shadow: 0 4px 10px rgba(0,0,0,0.3);
-        }
-
-        .container {
-            max-width: 480px;
-            margin: auto;
-            padding: 20px;
-        }
-
-        /* Galerie d'images */
-        .menu-visual {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 15px;
-            margin-bottom: 25px;
-        }
-
-        .taco-card {
-            background: var(--card-bg);
-            border-radius: 15px;
-            overflow: hidden;
-            border: 1px solid #333;
-            transition: 0.3s;
-        }
-
-        .taco-card img {
-            width: 100%;
-            height: 120px;
-            object-fit: cover;
-        }
-
-        .taco-card p {
-            margin: 10px;
-            text-align: center;
-            font-weight: bold;
-            color: var(--primary);
-        }
-
-        /* Formulaire */
-        .order-form {
-            background: var(--card-bg);
-            padding: 25px;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-        }
-
-        h2 {
-            margin-top: 0;
-            color: var(--primary);
-            text-align: center;
-        }
-
-        label {
-            display: block;
-            margin-top: 15px;
-            font-size: 14px;
-            font-weight: bold;
-        }
-
-        input, select, textarea {
-            width: 100%;
-            padding: 12px;
-            margin-top: 8px;
-            border-radius: 10px;
-            border: 1px solid #444;
-            background: #2a2a2a;
-            color: white;
-            font-size: 16px;
-            box-sizing: border-box;
-        }
-
-        input:focus {
-            border-color: var(--primary);
-            outline: none;
-        }
-
-        .btn-whatsapp {
-            background: var(--secondary);
-            color: white;
-            border: none;
-            padding: 18px;
-            width: 100%;
-            border-radius: 12px;
-            font-size: 18px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 25px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            gap: 10px;
-        }
-
-        .btn-call {
-            background: transparent;
-            color: var(--primary);
-            border: 2px solid var(--primary);
-            padding: 12px;
-            width: 100%;
-            border-radius: 12px;
-            font-size: 16px;
-            font-weight: bold;
-            cursor: pointer;
-            margin-top: 15px;
-        }
-
-        footer {
-            text-align: center;
-            margin-top: 30px;
-            font-size: 12px;
-            color: #777;
-        }
+        body { font-family: Arial, sans-serif; background-color: #121212; color: white; margin: 0; text-align: center; }
+        header { background: #ffcc00; color: black; padding: 20px; font-weight: bold; font-size: 20px; }
+        .container { max-width: 450px; margin: auto; padding: 15px; }
+        .taco-img { width: 100%; border-radius: 15px; border: 3px solid #ffcc00; margin-bottom: 20px; }
+        .order-box { background: #1e1e1e; padding: 20px; border-radius: 20px; border: 1px solid #333; }
+        .price { font-size: 24px; color: #ffcc00; font-weight: bold; margin: 10px 0; }
+        label { display: block; text-align: left; margin-top: 10px; font-size: 12px; color: #aaa; }
+        input, select, textarea { width: 100%; padding: 12px; margin: 5px 0 15px 0; border-radius: 10px; border: none; background: #333; color: white; box-sizing: border-box; }
+        .btn-wa { background: #25D366; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; }
     </style>
 </head>
 <body>
 
-<header>🌮 LE STAND TACOS 🌮</header>
+<header>🌮 STAND TACOS DE L'ÉCOLE 🌮</header>
 
 <div class="container">
-    <div class="menu-visual">
-        <div class="taco-card">
-            <img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?auto=format&fit=crop&w=400" alt="Tacos M">
-            <p>Taille M (5$)</p>
-        </div>
-        <div class="taco-card">
-            <img src="https://images.unsplash.com/photo-1613514785940-daed07799d85?auto=format&fit=crop&w=400" alt="Tacos L">
-            <p>Taille L (8$)</p>
-        </div>
-    </div>
+    <img src="téléchargement.jpg" alt="Notre Tacos" class="taco-img">
 
-    <div class="order-form">
-        <h2>COMMANDE ICI</h2>
+    <div class="order-box">
+        <div class="price">5.000 FC</div>
         
-        <label>Ton Nom & Classe :</label>
-        <input type="text" id="nom" placeholder="Ex: Sylvie - 4ème A">
+        <label>Nom du Client :</label>
+        <input type="text" id="nom" placeholder="Ton nom complet">
 
-        <label>Taille du Tacos :</label>
-        <select id="taille">
-            <option>Simple (M)</option>
-            <option>Double (L)</option>
-            <option>Giga (XL)</option>
+        <label>Détails (Viande, Sauce, Piment...) :</label>
+        <textarea id="details" placeholder="Ex: Poulet, Sauce Algérienne, beaucoup de Piment"></textarea>
+
+        <label>Jour de récupération à l'école :</label>
+        <select id="jour">
+            <option>Lundi (à l'école)</option>
+            <option>Mardi (à l'école)</option>
+            <option>Mercredi (à l'école)</option>
+            <option>Jeudi (à l'école)</option>
+            <option>Vendredi (à l'école)</option>
         </select>
 
-        <label>Ta Viande & Sauce :</label>
-        <input type="text" id="viande" placeholder="Ex: Poulet Piment, Mayo">
-
-        <label>Notes spéciales :</label>
-        <textarea id="notes" rows="2" placeholder="Ex: Sans frites, double fromage..."></textarea>
-
-        <button class="btn-whatsapp" onclick="commanderWhatsApp()">
-            🟢 Envoyer sur WhatsApp
-        </button>
-        
-        <button class="btn-call" onclick="window.location.href='tel:+243819679859'">
-            📞 Appeler le stand
-        </button>
+        <button class="btn-wa" onclick="commander()">Commander via WhatsApp</button>
     </div>
-
-    <footer>Propulsé par TonNom - © 2024</footer>
 </div>
 
 <script>
-    function commanderWhatsApp() {
-        const numeroTel = "243819679859"; // Numéro de la dame
+    function commander() {
+        const num = "243819679859";
         const nom = document.getElementById('nom').value;
-        const taille = document.getElementById('taille').value;
-        const viande = document.getElementById('viande').value;
-        const notes = document.getElementById('notes').value;
+        const det = document.getElementById('details').value;
+        const jour = document.getElementById('jour').value;
 
-        if(!nom || !viande) {
-            alert("Merci de remplir ton nom et ton choix de viande !");
+        if(!nom || !det) {
+            alert("Remplis ton nom et tes détails !");
             return;
         }
 
-        // Construction du message
-        const message = `*NOUVELLE COMMANDE TACOS*%0A` +
-                        `--------------------------%0A` +
-                        `👤 *Client :* ${nom}%0A` +
-                        `📏 *Taille :* ${taille}%0A` +
-                        `🥩 *Détails :* ${viande}%0A` +
-                        `📝 *Note :* ${notes || 'Aucune'}%0A` +
-                        `--------------------------%0A` +
-                        `_Commande passée via le site web_`;
-
-        // Ouverture de WhatsApp
-        const url = `https://wa.me/${numeroTel}?text=${message}`;
-        window.open(url, '_blank').focus();
+        const msg = `*COMMANDE STAND TACOS*%0A👤 *Client:* ${nom}%0A💰 *Prix:* 5000 FC%0A🥩 *Détails:* ${det}%0A📅 *Récupération:* ${jour}`;
+        window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
     }
 </script>
 
