@@ -5,18 +5,101 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STAND TACOS DE L'ÉCOLE</title>
     <style>
-        body { font-family: Arial, sans-serif; background-color: #121212; color: white; margin: 0; text-align: center; }
-        header { background: #ffcc00; color: black; padding: 20px; font-weight: bold; font-size: 20px; }
+        /* FOND ANIMÉ */
+        .bg-animation {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 110%; /* Un peu plus large pour permettre le mouvement */
+            height: 110%;
+            background: url('fond.jpg') no-repeat center center;
+            background-size: cover;
+            z-index: -1;
+            /* Animation de mouvement lent */
+            animation: moveSlowly 20s linear infinite alternate;
+            filter: brightness(0.4); /* Assombrit le fond pour que le texte soit lisible */
+        }
+
+        @keyframes moveSlowly {
+            from { transform: translate(0, 0) scale(1); }
+            to { transform: translate(-20px, -20px) scale(1.1); }
+        }
+
+        body { 
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            margin: 0; 
+            text-align: center; 
+            color: white;
+            background-color: #121212; /* Couleur de secours */
+        }
+
+        header { 
+            background: #ffcc00; 
+            color: black; 
+            padding: 20px; 
+            font-weight: bold; 
+            font-size: 22px; 
+            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+        }
+
         .container { max-width: 450px; margin: auto; padding: 15px; }
-        .taco-img { width: 100%; border-radius: 15px; border: 3px solid #ffcc00; margin-bottom: 20px; }
-        .order-box { background: #1e1e1e; padding: 20px; border-radius: 20px; border: 1px solid #333; }
-        .price { font-size: 24px; color: #ffcc00; font-weight: bold; margin: 10px 0; }
-        label { display: block; text-align: left; margin-top: 10px; font-size: 12px; color: #aaa; }
-        input, select, textarea { width: 100%; padding: 12px; margin: 5px 0 15px 0; border-radius: 10px; border: none; background: #333; color: white; box-sizing: border-box; }
-        .btn-wa { background: #25D366; color: white; border: none; padding: 15px; width: 100%; border-radius: 10px; font-weight: bold; cursor: pointer; font-size: 16px; }
+
+        .taco-img { 
+            width: 100%; 
+            border-radius: 15px; 
+            border: 3px solid #ffcc00; 
+            margin-bottom: 20px; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        }
+
+        .order-box { 
+            background: rgba(30, 30, 30, 0.85); /* Semi-transparent pour voir le fond */
+            backdrop-filter: blur(10px); /* Floute légèrement le fond derrière la boîte */
+            padding: 25px; 
+            border-radius: 25px; 
+            border: 1px solid rgba(255, 204, 0, 0.3); 
+        }
+
+        .price { font-size: 28px; color: #ffcc00; font-weight: bold; margin: 10px 0; }
+        
+        label { display: block; text-align: left; margin-top: 15px; font-size: 13px; color: #ffcc00; font-weight: bold; }
+        
+        input, select, textarea { 
+            width: 100%; 
+            padding: 12px; 
+            margin: 8px 0; 
+            border-radius: 12px; 
+            border: 1px solid #444; 
+            background: rgba(255, 255, 255, 0.1); 
+            color: white; 
+            box-sizing: border-box; 
+            font-size: 16px;
+        }
+
+        .btn-wa { 
+            background: #25D366; 
+            color: white; 
+            border: none; 
+            padding: 18px; 
+            width: 100%; 
+            border-radius: 12px; 
+            font-weight: bold; 
+            cursor: pointer; 
+            font-size: 18px; 
+            margin-top: 20px;
+            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
+            transition: transform 0.2s;
+        }
+
+        .btn-wa:active { transform: scale(0.95); }
     </style>
 </head>
 <body>
+
+<div class="bg-animation"></div>
 
 <header>🌮 STAND TACOS DE L'ÉCOLE 🌮</header>
 
@@ -26,13 +109,13 @@
     <div class="order-box">
         <div class="price">5.000 FC</div>
         
-        <label>Nom du Client :</label>
+        <label>👤 Nom du Client :</label>
         <input type="text" id="nom" placeholder="Ton nom complet">
 
-        <label>Détails (Viande, Sauce, Piment...) :</label>
-        <textarea id="details" placeholder="Ex: Poulet, Sauce Algérienne, beaucoup de Piment"></textarea>
+        <label>🥩 Détails (Viande, Sauce, Piment...) :</label>
+        <textarea id="details" placeholder="Ex: Poulet, Sauce Algérienne, beaucoup de Piment" rows="3"></textarea>
 
-        <label>Jour de récupération à l'école :</label>
+        <label>📅 Jour de récupération :</label>
         <select id="jour">
             <option>Lundi (à l'école)</option>
             <option>Mardi (à l'école)</option>
@@ -41,7 +124,7 @@
             <option>Vendredi (à l'école)</option>
         </select>
 
-        <button class="btn-wa" onclick="commander()">Commander via WhatsApp</button>
+        <button class="btn-wa" onclick="commander()">COMMANDER VIA WHATSAPP</button>
     </div>
 </div>
 
@@ -53,11 +136,11 @@
         const jour = document.getElementById('jour').value;
 
         if(!nom || !det) {
-            alert("Remplis ton nom et tes détails !");
+            alert("⚠️ Oups ! Remplis ton nom et tes détails de tacos !");
             return;
         }
 
-        const msg = `*COMMANDE STAND TACOS*%0A👤 *Client:* ${nom}%0A💰 *Prix:* 5000 FC%0A🥩 *Détails:* ${det}%0A📅 *Récupération:* ${jour}`;
+        const msg = `*NOUVELLE COMMANDE STAND TACOS*%0A--------------------------%0A👤 *Client:* ${nom}%0A🥩 *Détails:* ${det}%0A📅 *Jour:* ${jour}%0A💰 *Total:* 5000 FC%0A--------------------------`;
         window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
     }
 </script>
