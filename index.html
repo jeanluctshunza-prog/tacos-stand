@@ -3,119 +3,171 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>STAND TACOS DE L'ÉCOLE</title>
+    <title>Master Tacos | Excellence & Goût</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
-        /* FOND ANIMÉ */
-        .bg-animation {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 110%; /* Un peu plus large pour permettre le mouvement */
-            height: 110%;
-            background: url('fond.jpg') no-repeat center center;
-            background-size: cover;
-            z-index: -1;
-            /* Animation de mouvement lent */
-            animation: moveSlowly 20s linear infinite alternate;
-            filter: brightness(0.4); /* Assombrit le fond pour que le texte soit lisible */
+        :root {
+            --primary: #ffcc00;
+            --secondary: #25D366;
+            --dark-bg: #0a0a0a;
+            --card-bg: #161616;
+            --text-main: #ffffff;
+            --text-muted: #a0a0a0;
         }
 
-        @keyframes moveSlowly {
-            from { transform: translate(0, 0) scale(1); }
-            to { transform: translate(-20px, -20px) scale(1.1); }
-        }
-
+        * { box-sizing: border-box; scroll-behavior: smooth; }
         body { 
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; 
+            font-family: 'Inter', sans-serif; 
             margin: 0; 
-            text-align: center; 
-            color: white;
-            background-color: #121212; /* Couleur de secours */
+            background-color: var(--dark-bg); 
+            color: var(--text-main);
+            line-height: 1.6;
         }
 
-        header { 
-            background: #ffcc00; 
-            color: black; 
-            padding: 20px; 
-            font-weight: bold; 
-            font-size: 22px; 
-            box-shadow: 0 4px 15px rgba(0,0,0,0.5);
+        /* --- HEADER (Style LWS Moderne) --- */
+        header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 8%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
             position: sticky;
             top: 0;
-            z-index: 100;
+            z-index: 1000;
+            border-bottom: 1px solid #222;
         }
 
-        .container { max-width: 450px; margin: auto; padding: 15px; }
+        .logo { font-size: 1.5rem; font-weight: 800; color: var(--primary); text-decoration: none; letter-spacing: -1px; }
+        nav a { color: var(--text-main); text-decoration: none; margin-left: 20px; font-size: 0.9rem; font-weight: 500; transition: 0.3s; }
+        nav a:hover { color: var(--primary); }
+        .btn-nav { background: var(--primary); color: black !important; padding: 8px 18px; border-radius: 6px; font-weight: 700; }
 
-        .taco-img { 
-            width: 100%; 
-            border-radius: 15px; 
-            border: 3px solid #ffcc00; 
-            margin-bottom: 20px; 
-            box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+        /* --- SECTION HERO --- */
+        .hero {
+            padding: 100px 8% 60px;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1a1a 0%, #0a0a0a 100%);
         }
 
-        .order-box { 
-            background: rgba(30, 30, 30, 0.85); /* Semi-transparent pour voir le fond */
-            backdrop-filter: blur(10px); /* Floute légèrement le fond derrière la boîte */
-            padding: 25px; 
-            border-radius: 25px; 
-            border: 1px solid rgba(255, 204, 0, 0.3); 
+        .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
+        .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
+
+        /* --- SECTION VITRINE (Comme LWS) --- */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            padding: 60px 8%;
         }
 
-        .price { font-size: 28px; color: #ffcc00; font-weight: bold; margin: 10px 0; }
-        
-        label { display: block; text-align: left; margin-top: 15px; font-size: 13px; color: #ffcc00; font-weight: bold; }
-        
-        input, select, textarea { 
-            width: 100%; 
-            padding: 12px; 
-            margin: 8px 0; 
-            border-radius: 12px; 
-            border: 1px solid #444; 
-            background: rgba(255, 255, 255, 0.1); 
-            color: white; 
-            box-sizing: border-box; 
-            font-size: 16px;
+        .feature-box {
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 15px;
+            border: 1px solid #222;
+            transition: 0.3s;
         }
 
-        .btn-wa { 
-            background: #25D366; 
-            color: white; 
-            border: none; 
-            padding: 18px; 
-            width: 100%; 
-            border-radius: 12px; 
-            font-weight: bold; 
-            cursor: pointer; 
-            font-size: 18px; 
-            margin-top: 20px;
-            box-shadow: 0 5px 15px rgba(37, 211, 102, 0.3);
-            transition: transform 0.2s;
+        .feature-box:hover { border-color: var(--primary); transform: translateY(-5px); }
+        .feature-box h3 { color: var(--primary); margin-bottom: 15px; }
+        .feature-box p { color: var(--text-muted); font-size: 0.95rem; }
+
+        /* --- SECTION COMMANDE (Ton Code Optimisé) --- */
+        .order-section {
+            background: #0f0f0f;
+            padding: 80px 8%;
+            display: flex;
+            justify-content: center;
         }
 
-        .btn-wa:active { transform: scale(0.95); }
+        .order-card {
+            width: 100%;
+            max-width: 550px;
+            background: var(--card-bg);
+            padding: 40px;
+            border-radius: 24px;
+            border: 1px solid var(--primary);
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .price-tag { font-size: 2rem; color: var(--primary); font-weight: 800; text-align: center; margin-bottom: 30px; }
+
+        label { display: block; margin-bottom: 8px; font-size: 0.85rem; font-weight: 700; color: var(--primary); text-transform: uppercase; }
+        input, textarea, select {
+            width: 100%;
+            padding: 14px;
+            margin-bottom: 20px;
+            background: #222;
+            border: 1px solid #333;
+            border-radius: 10px;
+            color: white;
+            font-family: inherit;
+        }
+
+        input:focus { outline: none; border-color: var(--primary); }
+
+        .btn-wa {
+            background: var(--secondary);
+            color: white;
+            border: none;
+            padding: 20px;
+            width: 100%;
+            border-radius: 12px;
+            font-size: 1.1rem;
+            font-weight: 800;
+            cursor: pointer;
+            transition: 0.3s;
+            box-shadow: 0 10px 20px rgba(37, 211, 102, 0.2);
+        }
+
+        .btn-wa:hover { transform: scale(1.02); filter: brightness(1.1); }
+
+        footer { text-align: center; padding: 50px; color: var(--text-muted); font-size: 0.8rem; border-top: 1px solid #222; }
+
     </style>
 </head>
 <body>
 
-<div class="bg-animation"></div>
+<header>
+    <a href="#" class="logo">MASTER TACOS</a>
+    <nav>
+        <a href="#services">Pourquoi nous?</a>
+        <a href="#commander" class="btn-nav">Commander</a>
+    </nav>
+</header>
 
-<header>🌮 STAND TACOS DE L'ÉCOLE 🌮</header>
+<section class="hero">
+    <h1>Le meilleur Tacos de l'école. <span style="color: var(--primary);">Point final.</span></h1>
+    <p>Une recette secrète, une préparation minute et une livraison directe sur ton campus. Ne fais plus de compromis sur ton repas.</p>
+</section>
 
-<div class="container">
-    <img src="téléchargement.jpg" alt="Notre Tacos" class="taco-img">
+<section class="features" id="services">
+    <div class="feature-box">
+        <h3>🔥 Grillé à souhait</h3>
+        <p>Nos tacos sont pressés avec amour pour un croquant parfait à chaque bouchée.</p>
+    </div>
+    <div class="feature-box">
+        <h3>🚀 Service Flash</h3>
+        <p>On sait que tu as cours. Ta commande est traitée en priorité pour éviter les retards.</p>
+    </div>
+    <div class="feature-box">
+        <h3>🌶️ Customisation Totale</h3>
+        <p>Sauce algérienne, samouraï ou piment fort ? C'est toi le chef de ton tacos.</p>
+    </div>
+</section>
 
-    <div class="order-box">
-        <div class="price">5.000 FC</div>
+<section class="order-section" id="commander">
+    <div class="order-card">
+        <div class="price-tag">5.000 FC</div>
         
-        <label>👤 Nom du Client :</label>
-        <input type="text" id="nom" placeholder="Ton nom complet">
+        <label>👤 Nom Complet</label>
+        <input type="text" id="nom" placeholder="Ex: Marc Kabamba">
 
-        <label>🥩 Détails (Viande, Sauce, Piment...) :</label>
-        <textarea id="details" placeholder="Ex: Poulet, Sauce Algérienne, beaucoup de Piment" rows="3"></textarea>
+        <label>🥩 Composition (Viande, Sauces, Supplément)</label>
+        <textarea id="details" rows="3" placeholder="Ex: Double viande, Sauce Fromagère, Sans oignons..."></textarea>
 
-        <label>📅 Jour de récupération :</label>
+        <label>📅 Jour de retrait</label>
         <select id="jour">
             <option>Lundi (à l'école)</option>
             <option>Mardi (à l'école)</option>
@@ -124,9 +176,13 @@
             <option>Vendredi (à l'école)</option>
         </select>
 
-        <button class="btn-wa" onclick="commander()">COMMANDER VIA WHATSAPP</button>
+        <button class="btn-wa" onclick="commander()">🚀 COMMANDER VIA WHATSAPP</button>
     </div>
-</div>
+</section>
+
+<footer>
+    &copy; 2026 MASTER TACOS - Propulsé par la faim des étudiants.
+</footer>
 
 <script>
     function commander() {
@@ -136,11 +192,11 @@
         const jour = document.getElementById('jour').value;
 
         if(!nom || !det) {
-            alert("⚠️ Oups ! Remplis ton nom et tes détails de tacos !");
+            alert("⚠️ Remplis ton nom et tes préférences avant de valider !");
             return;
         }
 
-        const msg = `*NOUVELLE COMMANDE STAND TACOS*%0A--------------------------%0A👤 *Client:* ${nom}%0A🥩 *Détails:* ${det}%0A📅 *Jour:* ${jour}%0A💰 *Total:* 5000 FC%0A--------------------------`;
+        const msg = `*NOUVELLE COMMANDE MASTER TACOS*%0A--------------------------%0A👤 *Client:* ${nom}%0A🥩 *Détails:* ${det}%0A📅 *Jour:* ${jour}%0A💰 *Total:* 5000 FC%0A--------------------------%0A_Commande passée via le site vitrine_`;
         window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
     }
 </script>
