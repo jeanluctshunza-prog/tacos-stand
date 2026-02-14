@@ -4,6 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Master Tacos | Excellence & Goût</title>
+    
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#ffcc00">
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Master Tacos">
+
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;800&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -24,7 +31,7 @@
             line-height: 1.6;
         }
 
-        /* --- HEADER (Style LWS Moderne) --- */
+        /* --- HEADER --- */
         header {
             display: flex;
             justify-content: space-between;
@@ -53,7 +60,7 @@
         .hero h1 { font-size: clamp(2.5rem, 5vw, 4rem); font-weight: 800; margin-bottom: 20px; line-height: 1.1; }
         .hero p { color: var(--text-muted); font-size: 1.2rem; max-width: 700px; margin: 0 auto 30px; }
 
-        /* --- SECTION VITRINE (Comme LWS) --- */
+        /* --- SECTION FEATURES --- */
         .features {
             display: grid;
             grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -73,7 +80,7 @@
         .feature-box h3 { color: var(--primary); margin-bottom: 15px; }
         .feature-box p { color: var(--text-muted); font-size: 0.95rem; }
 
-        /* --- SECTION COMMANDE (Ton Code Optimisé) --- */
+        /* --- SECTION COMMANDE --- */
         .order-section {
             background: #0f0f0f;
             padding: 80px 8%;
@@ -139,21 +146,21 @@
 
 <section class="hero">
     <h1>Le meilleur Tacos de l'école. <span style="color: var(--primary);">Point final.</span></h1>
-    <p>Une recette secrète, une préparation minute et une livraison directe sur ton campus. Ne fais plus de compromis sur ton repas.</p>
+    <p>Une recette secrète, une préparation minute et une livraison directe sur ton campus.</p>
 </section>
 
 <section class="features" id="services">
     <div class="feature-box">
         <h3>🔥 Grillé à souhait</h3>
-        <p>Nos tacos sont pressés avec amour pour un croquant parfait à chaque bouchée.</p>
+        <p>Nos tacos sont pressés avec amour pour un croquant parfait.</p>
     </div>
     <div class="feature-box">
         <h3>🚀 Service Flash</h3>
-        <p>On sait que tu as cours. Ta commande est traitée en priorité pour éviter les retards.</p>
+        <p>Commande traitée en priorité pour éviter tes retards en cours.</p>
     </div>
     <div class="feature-box">
-        <h3>🌶️ Customisation Totale</h3>
-        <p>Sauce algérienne, samouraï ou piment fort ? C'est toi le chef de ton tacos.</p>
+        <h3>🌶️ Customisation</h3>
+        <p>Sauce algérienne, samouraï ou piment ? C'est toi le chef.</p>
     </div>
 </section>
 
@@ -164,8 +171,8 @@
         <label>👤 Nom Complet</label>
         <input type="text" id="nom" placeholder="Ex: Marc Kabamba">
 
-        <label>🥩 Composition (Viande, Sauces, Supplément)</label>
-        <textarea id="details" rows="3" placeholder="Ex: Double viande, Sauce Fromagère, Sans oignons..."></textarea>
+        <label>🥩 Composition & Sauces</label>
+        <textarea id="details" rows="3" placeholder="Ex: Double viande, Sauce Fromagère..."></textarea>
 
         <label>📅 Jour de retrait</label>
         <select id="jour">
@@ -181,7 +188,7 @@
 </section>
 
 <footer>
-    &copy; 2026 MASTER TACOS - Propulsé par la faim des étudiants.
+    &copy; 2026 MASTER TACOS - Propulsé par OptiSite Digital.
 </footer>
 
 <script>
@@ -192,12 +199,19 @@
         const jour = document.getElementById('jour').value;
 
         if(!nom || !det) {
-            alert("⚠️ Remplis ton nom et tes préférences avant de valider !");
+            alert("⚠️ Remplis ton nom et tes préférences !");
             return;
         }
 
-        const msg = `*NOUVELLE COMMANDE MASTER TACOS*%0A--------------------------%0A👤 *Client:* ${nom}%0A🥩 *Détails:* ${det}%0A📅 *Jour:* ${jour}%0A💰 *Total:* 5000 FC%0A--------------------------%0A_Commande passée via le site vitrine_`;
+        const msg = `*NOUVELLE COMMANDE MASTER TACOS*%0A--------------------------%0A👤 *Client:* ${nom}%0A🥩 *Détails:* ${det}%0A📅 *Jour:* ${jour}%0A💰 *Total:* 5000 FC%0A--------------------------`;
         window.open(`https://wa.me/${num}?text=${msg}`, '_blank');
+    }
+
+    // Script pour enregistrer le Service Worker (Nécessaire pour la PWA)
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            navigator.serviceWorker.register('/sw.js').catch(err => console.log('SW error:', err));
+        });
     }
 </script>
 
